@@ -11,9 +11,7 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
-
 public interface AccountMapper {
-
     AccountMapper ACCOUNT_MAPPER = Mappers.getMapper(AccountMapper.class);
 
 
@@ -24,7 +22,4 @@ public interface AccountMapper {
     void updateAccount(@MappingTarget Account account, UpdateAccountRequest updateAccountRequest);
 
     Account createAccount(CreateAccountRequest createAccountRequest);
-
-
-
 }

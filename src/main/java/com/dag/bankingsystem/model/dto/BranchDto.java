@@ -16,5 +16,5 @@ public class BranchDto {
 
     private String name;
 
-    private Address address;
+    private AddressDto address;
 }

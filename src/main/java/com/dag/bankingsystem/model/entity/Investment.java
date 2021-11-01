@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import net.bytebuddy.implementation.bind.annotation.Super;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -17,24 +16,23 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@Table(name = "branches")
-@SQLDelete(sql = "UPDATE branches SET is_deleted = true WHERE id=?")
+@Table(name = "investments")
+@SQLDelete(sql = "UPDATE investments SET is_deleted = true WHERE id=?")
 @Where(clause = "is_deleted=false")
-public class Branch extends BaseEntity{
-
+public class Investment extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
-    @Column(name = "address_id")
-    private Integer addressId;
+    private int fund;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id",updatable = false,nullable = false,insertable = false)
-    private Address address;
+    private String explanation;
 
-    // TODO: 31.10.2021 Calisanlar ekle buraya
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "investments")
+    private List<Customer> customers;
 
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "investment")
+    private List<Stock> stocks;
 }

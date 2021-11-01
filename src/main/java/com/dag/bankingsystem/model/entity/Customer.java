@@ -40,6 +40,19 @@ public class Customer extends BaseEntity{
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "customer")
     private List<Account> accounts;
 
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @JoinTable(name = "customer_investments",
+            joinColumns = {
+                    @JoinColumn(name = "customer_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "investment_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)})
+    private List<Investment> investments ;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "customer")
+    private List<Stock> stocks;
+
     private String phone;
 
     private String email;

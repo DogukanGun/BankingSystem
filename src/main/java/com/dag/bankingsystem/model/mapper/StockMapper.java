@@ -9,6 +9,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface StockMapper {
 
@@ -17,7 +19,6 @@ public interface StockMapper {
     @Mapping(source = "customer.name",target = "customerName")
     StockDto convertToStockDto(Stock stock);
 
+    List<StockDto> convertToStockDtoList(List<Stock> stocks);
     Stock createStock(CreateStockRequest createStockRequest);
-
-    void updateStock(@MappingTarget Stock stock, UpdateStockRequest updateStockRequest);
 }

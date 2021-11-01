@@ -1,5 +1,7 @@
 package com.dag.bankingsystem.controller;
 
+import com.dag.bankingsystem.model.dto.CustomerDto;
+import com.dag.bankingsystem.model.dto.InvestmentDto;
 import com.dag.bankingsystem.model.dto.StockDto;
 import com.dag.bankingsystem.model.entity.Stock;
 import com.dag.bankingsystem.model.request.stock.CreateStockRequest;
@@ -17,6 +19,16 @@ public class StockController {
     @GetMapping("{id}")
     public StockDto getStock(@PathVariable int id){
         return stockService.getStock(id);
+    }
+
+    @GetMapping("{id}/customer")
+    public CustomerDto getCustomer(@PathVariable int id){
+        return stockService.getCustomer(id);
+    }
+
+    @GetMapping("{id}/investment")
+    public InvestmentDto getInvestment(@PathVariable int id){
+        return stockService.getInvestment(id);
     }
 
     @GetMapping("customer/{id}")

@@ -53,6 +53,9 @@ public class Customer extends BaseEntity{
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "customer")
     private List<Stock> stocks;
 
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "customer")
+    private List<Credit> credits;
+
     private String phone;
 
     private String email;

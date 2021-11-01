@@ -1,4 +1,4 @@
-package com.dag.bankingsystem.model.request.stock;
+package com.dag.bankingsystem.model.request.credit;
 
 
 import lombok.AllArgsConstructor;
@@ -10,10 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UpdateStockRequest {
+public class UpdateCreditRequest {
 
-
-    private int amount;
-
-    private int value;
+    private int instalmentCount;
 }

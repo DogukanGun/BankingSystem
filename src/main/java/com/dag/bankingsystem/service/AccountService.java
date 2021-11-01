@@ -1,16 +1,23 @@
 package com.dag.bankingsystem.service;
 
 
+import com.dag.bankingsystem.exception.ApiException;
 import com.dag.bankingsystem.model.dto.AccountDto;
+import com.dag.bankingsystem.model.dto.BranchDto;
+import com.dag.bankingsystem.model.dto.CustomerDto;
 import com.dag.bankingsystem.model.entity.Account;
+import com.dag.bankingsystem.model.entity.Branch;
 import com.dag.bankingsystem.model.request.account.CreateAccountRequest;
 import com.dag.bankingsystem.model.request.account.UpdateAccountRequest;
 import com.dag.bankingsystem.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
 import static com.dag.bankingsystem.model.mapper.AccountMapper.ACCOUNT_MAPPER;
+import static com.dag.bankingsystem.model.mapper.BranchMapper.BRANCH_MAPPER;
+import static com.dag.bankingsystem.model.mapper.CustomerMapper.CUSTOMER_MAPPER;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +37,29 @@ public class AccountService {
 
     private Account getAccountBtId(int id) {
         return accountRepository.findById(id).orElseThrow(()->new NotFoundException("Account is not found"));
+    }
+
+    public AccountDto withdrawMoney(int id,int money){
+        Account account = getAccountBtId(id);
+        if (account.getBalance()<money){
+            throw new ApiException("You don't have enough money to withdraw", HttpStatus.BAD_REQUEST);
+        }
+        account.setBalance(account.getBalance()-money);
+        return ACCOUNT_MAPPER.convertToAccountDto(accountRepository.save(account));
+    }
+
+    public BranchDto getBranchInformation(int id){
+        Account account = getAccountBtId(id);
+        return BRANCH_MAPPER.convertToBranchDto(account.getBranch());
+    }
+    public CustomerDto getCustomerInformation(int id){
+        Account account = getAccountBtId(id);
+        return CUSTOMER_MAPPER.convertToCustomerDto(account.getCustomer());
+    }
+    public AccountDto depositMoney(int id,int money){
+        Account account = getAccountBtId(id);
+        account.setBalance(account.getBalance()+money);
+        return ACCOUNT_MAPPER.convertToAccountDto(accountRepository.save(account));
     }
 
     public void deleteAccount(int id){

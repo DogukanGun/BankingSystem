@@ -1,11 +1,15 @@
 package com.dag.bankingsystem.controller;
 
+import com.dag.bankingsystem.model.dto.CustomerDto;
 import com.dag.bankingsystem.model.dto.InvestmentDto;
+import com.dag.bankingsystem.model.dto.StockDto;
 import com.dag.bankingsystem.model.entity.Investment;
 import com.dag.bankingsystem.model.request.investment.UpdateCreateInvestmentRequest;
 import com.dag.bankingsystem.service.InvestmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("investment")
@@ -19,6 +23,15 @@ public class InvestmentController {
         return investmentService.getInvestment(id);
     }
 
+    @GetMapping("{id}/stocks")
+    public List<StockDto> getStocks(@PathVariable int id){
+        return investmentService.getStocks(id);
+    }
+
+    @GetMapping("{id}/customers")
+    public List<CustomerDto> getCustomers(@PathVariable int id){
+        return investmentService.getCustomers(id);
+    }
     @PostMapping
     public InvestmentDto createInvestment(@RequestBody UpdateCreateInvestmentRequest updateCreateInvestmentRequest){
         return investmentService.createInvestment(updateCreateInvestmentRequest);

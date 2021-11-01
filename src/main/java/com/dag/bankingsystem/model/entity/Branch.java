@@ -35,6 +35,9 @@ public class Branch extends BaseEntity{
     @JoinColumn(name = "address_id",updatable = false,nullable = false,insertable = false)
     private Address address;
 
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "branch")
+    private List<Credit> credits;
+
     // TODO: 31.10.2021 Calisanlar ekle buraya
 
 }

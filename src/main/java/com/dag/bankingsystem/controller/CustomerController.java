@@ -1,12 +1,16 @@
 package com.dag.bankingsystem.controller;
 
 
+import com.dag.bankingsystem.model.dto.CreditDto;
 import com.dag.bankingsystem.model.dto.CustomerDto;
+import com.dag.bankingsystem.model.dto.StockDto;
 import com.dag.bankingsystem.model.request.customer.CreateCustomerRequest;
 import com.dag.bankingsystem.model.request.customer.UpdateCustomerRequest;
 import com.dag.bankingsystem.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("customer")
@@ -17,6 +21,16 @@ public class CustomerController {
     @GetMapping("{id}")
     public CustomerDto getCustomer(@PathVariable int id){
         return customerService.getCustomer(id);
+    }
+
+    @GetMapping("{id}/credits")
+    public List<CreditDto> getCredits(@PathVariable int id){
+        return customerService.getCredits(id);
+    }
+
+    @GetMapping("{id}/stocks")
+    public List<StockDto> getStocks(@PathVariable int id){
+        return customerService.getStocks(id);
     }
 
     @PostMapping

@@ -10,6 +10,7 @@ import com.dag.bankingsystem.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -34,12 +35,12 @@ public class CustomerController {
     }
 
     @PostMapping
-    public CustomerDto createCustomer(@RequestBody CreateCustomerRequest createCustomerRequest){
+    public CustomerDto createCustomer(@Valid  @RequestBody CreateCustomerRequest createCustomerRequest){
         return customerService.createCustomer(createCustomerRequest);
     }
 
     @PutMapping("{id}")
-    public CustomerDto updateCustomer(@PathVariable int id, @RequestBody UpdateCustomerRequest updateCustomerRequest){
+    public CustomerDto updateCustomer(@PathVariable int id,@Valid @RequestBody UpdateCustomerRequest updateCustomerRequest){
         return customerService.updateCustomer(id,updateCustomerRequest);
     }
 

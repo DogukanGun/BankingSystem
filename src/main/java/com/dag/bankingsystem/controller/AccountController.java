@@ -10,6 +10,8 @@ import com.dag.bankingsystem.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("account")
 @RequiredArgsConstructor
@@ -32,7 +34,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public AccountDto createAccount(@RequestBody CreateAccountRequest createAccountRequest){
+    public AccountDto createAccount(@Valid @RequestBody CreateAccountRequest createAccountRequest){
         return accountService.createAccount(createAccountRequest);
     }
 
@@ -42,7 +44,7 @@ public class AccountController {
     }
 
     @PutMapping("{id}")
-    public AccountDto updateAccount(@PathVariable int id,@RequestBody UpdateAccountRequest updateAccountRequest){
+    public AccountDto updateAccount(@PathVariable int id,@Valid @RequestBody UpdateAccountRequest updateAccountRequest){
         return accountService.updateAccount(id,updateAccountRequest);
     }
 

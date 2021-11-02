@@ -1,5 +1,6 @@
 package com.dag.bankingsystem.model.request.account;
 
+import com.dag.bankingsystem.validation.AccountType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,8 +20,7 @@ public class CreateAccountRequest {
     @Min(0)
     private Integer customerId;
 
-    @NotBlank
-    @NotNull
+    @AccountType
     private String currency;
 
     @NotBlank

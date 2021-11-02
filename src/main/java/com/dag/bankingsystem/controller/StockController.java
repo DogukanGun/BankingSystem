@@ -10,6 +10,8 @@ import com.dag.bankingsystem.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("stock")
 @RequiredArgsConstructor
@@ -37,7 +39,7 @@ public class StockController {
     }
 
     @PostMapping
-    public StockDto buyStock(@RequestBody CreateStockRequest createStockRequest){
+    public StockDto buyStock(@Valid @RequestBody CreateStockRequest createStockRequest){
         return stockService.buyStock(createStockRequest);
     }
 
@@ -47,7 +49,7 @@ public class StockController {
     }
 
     @PutMapping("{id}/buy-stock-more")
-    public StockDto buyStockMore(@PathVariable int id,@RequestBody UpdateStockRequest updateStockRequest){
+    public StockDto buyStockMore(@PathVariable int id,@Valid @RequestBody UpdateStockRequest updateStockRequest){
         return stockService.buyStockMore(id,updateStockRequest);
     }
 }

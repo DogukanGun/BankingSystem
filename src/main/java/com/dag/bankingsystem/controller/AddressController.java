@@ -8,6 +8,8 @@ import com.dag.bankingsystem.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("address")
 @RequiredArgsConstructor
@@ -15,12 +17,12 @@ public class AddressController {
     private final AddressService addressService;
 
     @PostMapping
-    public AddressDto createAddress(@RequestBody UpdateCreateAddressRequest updateCreateAddressRequest){
+    public AddressDto createAddress(@Valid @RequestBody UpdateCreateAddressRequest updateCreateAddressRequest){
         return addressService.createAddress(updateCreateAddressRequest);
     }
 
     @PutMapping("{id}")
-    public AddressDto updateAddress(@PathVariable int id,@RequestBody UpdateCreateAddressRequest updateCreateAddressRequest){
+    public AddressDto updateAddress(@PathVariable int id,@Valid @RequestBody UpdateCreateAddressRequest updateCreateAddressRequest){
         return addressService.updateAddress(id,updateCreateAddressRequest);
     }
 

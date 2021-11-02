@@ -11,6 +11,7 @@ import com.dag.bankingsystem.service.BranchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -39,12 +40,12 @@ public class BranchController {
         return branchService.getAddress(id);
     }
     @PostMapping
-    public BranchDto createBranch(@RequestBody CreateBranchRequest createBranchRequest){
+    public BranchDto createBranch(@Valid @RequestBody CreateBranchRequest createBranchRequest){
         return branchService.createBranch(createBranchRequest);
     }
 
     @PutMapping("{id}")
-    public BranchDto updateBranch(@PathVariable int id,@RequestBody UpdateBranchRequest updateBranchRequest){
+    public BranchDto updateBranch(@PathVariable int id,@Valid @RequestBody UpdateBranchRequest updateBranchRequest){
         return branchService.updateBranch(id,updateBranchRequest);
     }
 

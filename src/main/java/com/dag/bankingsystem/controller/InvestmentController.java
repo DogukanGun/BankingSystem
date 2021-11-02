@@ -9,6 +9,7 @@ import com.dag.bankingsystem.service.InvestmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,12 +34,12 @@ public class InvestmentController {
         return investmentService.getCustomers(id);
     }
     @PostMapping
-    public InvestmentDto createInvestment(@RequestBody UpdateCreateInvestmentRequest updateCreateInvestmentRequest){
+    public InvestmentDto createInvestment(@Valid @RequestBody UpdateCreateInvestmentRequest updateCreateInvestmentRequest){
         return investmentService.createInvestment(updateCreateInvestmentRequest);
     }
 
     @PutMapping("{id}")
-    public InvestmentDto updateInvestment(@PathVariable int id,@RequestBody UpdateCreateInvestmentRequest updateCreateInvestmentRequest){
+    public InvestmentDto updateInvestment(@PathVariable int id,@Valid @RequestBody UpdateCreateInvestmentRequest updateCreateInvestmentRequest){
         return investmentService.updateInvestment(id,updateCreateInvestmentRequest);
     }
 

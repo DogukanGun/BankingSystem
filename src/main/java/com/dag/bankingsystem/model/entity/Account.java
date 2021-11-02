@@ -2,6 +2,7 @@ package com.dag.bankingsystem.model.entity;
 
 
 import com.dag.bankingsystem.helper.AccountHelper;
+import com.dag.bankingsystem.validation.AccountType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -29,6 +29,7 @@ public class JsonToClass {
         for (int i = 0; i < jsonarray.length(); i++) {
             JSONObject jsonobject = jsonarray.getJSONObject(i);
             Currency currency = Currency.builder()
+                    .cc(jsonobject.getString("cc"))
                     .name(jsonobject.getString("name"))
                     .symbol(jsonobject.getString("symbol"))
                     .build();

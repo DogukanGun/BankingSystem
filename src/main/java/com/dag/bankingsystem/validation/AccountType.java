@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 
 @Constraint(validatedBy = AccountTypeValidator.class)
 @Target( { ElementType.FIELD })
-@Retention(RetentionPolicy.CLASS)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface AccountType {
     String message() default "Invalid account type";
     Class<?>[] groups() default {};

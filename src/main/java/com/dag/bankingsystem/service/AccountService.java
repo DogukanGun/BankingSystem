@@ -40,7 +40,7 @@ public class AccountService {
     }
 
     private Account getAccountBtId(int id) {
-        return accountRepository.findById(id).orElseThrow(()->new NotFoundException("Account is not found"));
+        return accountRepository.findById(id).orElseThrow(()->new NotFoundException("Account cannot be found"));
     }
 
     public AccountDto withdrawMoney(int id,int money){

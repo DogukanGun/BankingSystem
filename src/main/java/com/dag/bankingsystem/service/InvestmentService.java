@@ -38,7 +38,7 @@ public class InvestmentService {
     }
 
     private Investment getInvestmentById(int id){
-        return investmentRepository.findById(id).orElseThrow(()->new NotFoundException("Investment is not found"));
+        return investmentRepository.findById(id).orElseThrow(()->new NotFoundException("Investment cannot be found"));
     }
 
     public InvestmentDto updateInvestment(int id,UpdateCreateInvestmentRequest updateCreateInvestmentRequest){

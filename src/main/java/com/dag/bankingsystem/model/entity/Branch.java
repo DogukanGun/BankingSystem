@@ -38,6 +38,8 @@ public class Branch extends BaseEntity{
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "branch")
     private List<Credit> credits;
 
-    // TODO: 31.10.2021 Calisanlar ekle buraya
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "branch")
+    private List<Employee> employees;
+
 
 }

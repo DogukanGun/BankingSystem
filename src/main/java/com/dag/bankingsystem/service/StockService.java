@@ -28,7 +28,7 @@ public class StockService {
     }
 
     private Stock getStockById(int id){
-        return stockRepository.findById(id).orElseThrow(()->new NotFoundException("Stock is not found"));
+        return stockRepository.findById(id).orElseThrow(()->new NotFoundException("Stock cannot be found"));
     }
     public StockDto getStock(int id){
         return STOCK_MAPPER.convertToStockDto(getStockById(id));

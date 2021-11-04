@@ -44,7 +44,7 @@ public class CustomerService {
     }
 
     private Customer getCustomerById(int id){
-        return customerRepository.findById(id).orElseThrow(()->new NotFoundException("Customer is not exists"));
+        return customerRepository.findById(id).orElseThrow(()->new NotFoundException("Customer cannot be found"));
     }
 
     public CustomerDto getCustomer(int id){

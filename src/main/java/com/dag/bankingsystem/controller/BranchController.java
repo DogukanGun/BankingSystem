@@ -4,6 +4,7 @@ package com.dag.bankingsystem.controller;
 import com.dag.bankingsystem.model.dto.AddressDto;
 import com.dag.bankingsystem.model.dto.BranchDto;
 import com.dag.bankingsystem.model.dto.CreditDto;
+import com.dag.bankingsystem.model.dto.EmployeeDto;
 import com.dag.bankingsystem.model.entity.Credit;
 import com.dag.bankingsystem.model.request.branch.CreateBranchRequest;
 import com.dag.bankingsystem.model.request.branch.UpdateBranchRequest;
@@ -39,9 +40,25 @@ public class BranchController {
     public AddressDto getAddress(@PathVariable int id){
         return branchService.getAddress(id);
     }
+
     @PostMapping
     public BranchDto createBranch(@Valid @RequestBody CreateBranchRequest createBranchRequest){
         return branchService.createBranch(createBranchRequest);
+    }
+
+    @GetMapping("{id}/employees/fired")
+    public List<EmployeeDto> getFiredEmployees(@PathVariable int id){
+        return branchService.getFiredEmployees(id);
+    }
+
+    @GetMapping("{id}/employees")
+    public List<EmployeeDto> getAllEmployees(@PathVariable int id){
+        return branchService.getAllEmployees(id);
+    }
+
+    @GetMapping("{id}/employees/working")
+    public List<EmployeeDto> getWorkingEmployees(@PathVariable int id){
+        return branchService.getNotFiredEmployees(id);
     }
 
     @PutMapping("{id}")

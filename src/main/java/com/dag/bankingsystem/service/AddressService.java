@@ -21,7 +21,7 @@ public class AddressService {
     }
 
     public AddressDto updateAddress(int id,UpdateCreateAddressRequest updateCreateAddressRequest){
-        Address address = addressRepository.findById(id).orElseThrow(()->new NotFoundException("Address is not found"));
+        Address address = addressRepository.findById(id).orElseThrow(()->new NotFoundException("Address cannot be found"));
         ADDRESS_MAPPER.updateAddress(address,updateCreateAddressRequest);
         return ADDRESS_MAPPER.convertToAddressDto(addressRepository.save(address));
     }

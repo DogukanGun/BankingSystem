@@ -18,7 +18,7 @@ public class CreditService {
     private final CreditRepository creditRepository;
 
     private Credit getCreditById(int id){
-        return creditRepository.findById(id).orElseThrow(()->new NotFoundException("Credit is not found"));
+        return creditRepository.findById(id).orElseThrow(()->new NotFoundException("Credit cannot be found"));
     }
 
     public CreditDto createCredit(CreateCreditRequest createCreditRequest){

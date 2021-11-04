@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface TransactionMapper {
     TransactionMapper TRANSACTION_MAPPER = Mappers.getMapper(TransactionMapper.class);
@@ -17,4 +19,6 @@ public interface TransactionMapper {
     @Mapping(source = "sourceAccount.iban",target = "sourceAccountIban")
     @Mapping(source = "targetAccount.iban",target = "targetAccountIban")
     TransactionDto convertToTransactionDto(Transaction transaction);
+
+    List<TransactionDto> convertToTransactionDtoList(List<Transaction> transactions);
 }

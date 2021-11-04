@@ -5,6 +5,7 @@ import com.dag.bankingsystem.exception.ApiException;
 import com.dag.bankingsystem.model.dto.AccountDto;
 import com.dag.bankingsystem.model.dto.BranchDto;
 import com.dag.bankingsystem.model.dto.CustomerDto;
+import com.dag.bankingsystem.model.dto.TransactionDto;
 import com.dag.bankingsystem.model.entity.Account;
 import com.dag.bankingsystem.model.entity.Branch;
 import com.dag.bankingsystem.model.request.account.CreateAccountRequest;
@@ -15,9 +16,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
+import java.util.List;
+
 import static com.dag.bankingsystem.model.mapper.AccountMapper.ACCOUNT_MAPPER;
 import static com.dag.bankingsystem.model.mapper.BranchMapper.BRANCH_MAPPER;
 import static com.dag.bankingsystem.model.mapper.CustomerMapper.CUSTOMER_MAPPER;
+import static com.dag.bankingsystem.model.mapper.TransactionMapper.TRANSACTION_MAPPER;
 
 @Service
 @RequiredArgsConstructor
@@ -62,6 +66,15 @@ public class AccountService {
         return ACCOUNT_MAPPER.convertToAccountDto(accountRepository.save(account));
     }
 
+    public List<TransactionDto> getOutTransactions(int id){
+        Account account = getAccountBtId(id);
+        return TRANSACTION_MAPPER.convertToTransactionDtoList(account.getOutTransactions());
+    }
+
+    public List<TransactionDto> getInTransactions(int id){
+        Account account = getAccountBtId(id);
+        return TRANSACTION_MAPPER.convertToTransactionDtoList(account.getInTransactions());
+    }
     public void deleteAccount(int id){
         accountRepository.deleteById(id);
     }

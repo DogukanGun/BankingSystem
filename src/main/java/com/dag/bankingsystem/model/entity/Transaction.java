@@ -26,14 +26,14 @@ public class Transaction extends BaseEntity{
     @Column(name = "source_account_id")
     private Integer sourceAccountId;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "source_account_id",updatable = false,nullable = false,insertable = false)
     private Account sourceAccount;
 
     @Column(name = "target_account_id")
     private Integer targetAccountId;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "target_account_id",updatable = false,nullable = false,insertable = false)
     private Account targetAccount;
 

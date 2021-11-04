@@ -13,6 +13,8 @@ import org.hibernate.annotations.Where;
 import org.iban4j.CountryCode;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -55,6 +57,12 @@ public class Account extends BaseEntity {
 
     @Column(name = "transaction_id")
     private Integer transactionId;
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "sourceAccount")
+    private List<Transaction> outTransactions;
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "targetAccount")
+    private List<Transaction> inTransactions;
 
     // TODO: 30.10.2021 buraya transaction ile baglanti kurulacak
 

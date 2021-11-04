@@ -4,6 +4,7 @@ package com.dag.bankingsystem.controller;
 import com.dag.bankingsystem.model.dto.AccountDto;
 import com.dag.bankingsystem.model.dto.BranchDto;
 import com.dag.bankingsystem.model.dto.CustomerDto;
+import com.dag.bankingsystem.model.dto.TransactionDto;
 import com.dag.bankingsystem.model.request.account.CreateAccountRequest;
 import com.dag.bankingsystem.model.request.account.UpdateAccountRequest;
 import com.dag.bankingsystem.service.AccountService;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("account")
@@ -31,6 +33,16 @@ public class AccountController {
     @GetMapping("{id}/customer")
     public CustomerDto getCustomer(@PathVariable int id){
         return accountService.getCustomerInformation(id);
+    }
+
+    @GetMapping("{id}/transactions/out")
+    public List<TransactionDto> getOutTransactions(@PathVariable int id){
+        return accountService.getOutTransactions(id);
+    }
+
+    @GetMapping("{id}/transactions/in")
+    public List<TransactionDto> getInTransactions(@PathVariable int id){
+        return accountService.getInTransactions(id);
     }
 
     @PostMapping

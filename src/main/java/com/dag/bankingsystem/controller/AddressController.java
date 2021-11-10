@@ -16,6 +16,11 @@ import javax.validation.Valid;
 public class AddressController {
     private final AddressService addressService;
 
+    @GetMapping("{id}")
+    public AddressDto getAddress(@PathVariable int id){
+        return addressService.getAddress(id);
+    }
+
     @PostMapping
     public AddressDto createAddress(@Valid @RequestBody UpdateCreateAddressRequest updateCreateAddressRequest){
         return addressService.createAddress(updateCreateAddressRequest);

@@ -20,10 +20,18 @@ public class AddressService {
         return ADDRESS_MAPPER.convertToAddressDto(addressRepository.save(address));
     }
 
+    public AddressDto getAddress(int id){
+        return ADDRESS_MAPPER.convertToAddressDto(getAddressById(id));
+    }
+
     public AddressDto updateAddress(int id,UpdateCreateAddressRequest updateCreateAddressRequest){
-        Address address = addressRepository.findById(id).orElseThrow(()->new NotFoundException("Address cannot be found"));
+        Address address = getAddressById(id);
         ADDRESS_MAPPER.updateAddress(address,updateCreateAddressRequest);
         return ADDRESS_MAPPER.convertToAddressDto(addressRepository.save(address));
+    }
+
+    private Address getAddressById(int id) {
+        return addressRepository.findById(id).orElseThrow(()->new NotFoundException("Address cannot be found"));
     }
 
     public void deleteAddress(int id){
